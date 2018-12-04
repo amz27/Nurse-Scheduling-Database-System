@@ -14,14 +14,14 @@ Sample Data:
 1.	Employee (employeeID |Lname |Fname |Mname |address |city |state |zip |FTorPT |salary |phone |roleID |certification |departID )
     Ex:97002,Richard,mars,n/a,n/a,University Park,PA,16803,ft,20000,222222222,200,n/a,1002
 2.	Shift (shiftID |shiftDate |startTime |endTime |day)
-    Ex:
+    Ex:shift 100,20171001,0,8,Monday
 3.	Schedule (departID |shiftID |employeeID |roleID |salaryID ): 3.	Schedule (departID |shiftID |employeeID |roleID |salaryID ): 
-
+    Ex:1001,101,97001,100,501
 4.	Role (roleID| roleName ):
-
+    Ex:200,Nurse
 5.	Department (departID| departName |bed): 
-  
+    Ex:1001,Emergency,8
 6.	Salary (salaryID |salaryPerShift | roleID):
-
+    Ex:501,120,100
 
 The design is an approach to solve a mini Nurse Scheduling Problem (NSP). It includes data for one week for each employee’s schedule including date, days, shift, department and role; for each department’s needs including needs per role and number needed; for each department’s scheduled people with their basic information. Besides, because all the data are stored in system, there are more conditions we can have when necessary. The database management is done in MySQL, using the database to organize all the information and get the data we need. Then, using index while searching for a specific information will help to improve performance of the running time. Not only fast computer, but also small laptop will be able to handle big amount of data. 

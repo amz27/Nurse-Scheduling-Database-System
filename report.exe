@@ -1,0 +1,60 @@
+#! /bin/bash
+# generate output report for input select statement and load into outputReport.txt
+
+printf "\nSelect Statement Report\n\n" >> outputReport.rpt
+while IFS=' ' read -r v1
+do
+if [ "$v1" = "OUTPUT1:" ]
+then
+	printf "Output Report of Select Statement 1:\n"
+		printf "\n Start Time      End Time    Shift Date(YYYY-MM-DD)        Day         Department       Role"
+	while IFS=',' read -r v1 v2 v3 v4 v5 v6
+	do
+	if [ "$v1" = "OUTPUT2:" ]
+	then 
+		break;
+	fi
+
+		printf "\n%6.6s %15.15s %20.20s %20.20s %15.15s %12.12s\n" "$v1" "$v2" "$v3" "$v4" "$v5" "$v6"
+	done	
+fi
+
+if [ "$v1" = "OUTPUT2:" ]
+then
+	printf "\n\nOutput Report of Select Statement 2:\n"
+		printf "\n Shift Date(YYYY-MM-DD)      Day       Start Time     End Time     Role"
+	while IFS=',' read -r v1 v2 v3 v4 v5
+	do
+	if [ "$v1" = "OUTPUT3:" ]
+	then 
+		break;
+	fi
+		printf "\n %15.15s  %15.15s  %10.10s   %10.10s   %10.10s\n" "$v1" "$v2" "$v3" "$v4" "$v5"
+	done
+fi
+
+if [ "$v1" = "OUTPUT3:" ]
+then
+	printf "\n\nOutput Report of Select Statement 3:\n"
+	printf "\n Last Name     First Name    Shift Date(YYYY-MM-DD)     Day         Role     Start Time   End Time   Phone Numbers"
+	while IFS=',' read -r v1 v2 v3 v4 v5 v6 v7 v8
+	do
+	if [ "$v1" = "OUTPUT4:" ]	
+	then
+		break;
+	fi
+		printf "\n %9.9s  %12.12s  %16.16s  %16.16s %12.12s %8.8s %12.12s %16.16s\n" "$v1" "$v2" "$v3" "$v4" "$v5" "$v6" "$v7" "$v8"
+	done
+fi
+
+if [ "$v1" = "OUTPUT4:" ]
+then
+	printf "\n\nOutput Report of Select Statement 4:\n"
+			printf "\n  Salary Per Shift      "
+	while IFS=',' read -r v1
+	do
+		printf "\n %10.10s\n" "$v1"
+	done
+fi
+done < myoutput.txt >> outputReport.rpt
+

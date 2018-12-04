@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#define MAXFIELDS 100 // for now
+#define MAXFIELDS 100 
 #define MAXINPUTLENGTH 5000
 #define MAXLENOFFIELDNAMES 50
 #define MAXLENOFFIELDTYPES 50
@@ -82,12 +82,12 @@ bool createTable(struct _table *table, FILE *filestream){
 	FILE *file = fopen (table->tableFileName, "w");
 	if(schema != NULL){
 		while (fgets(str, sizeof(str), filestream)) {
-            	printf("===> %s", str);
-            	fwrite(str , strlen(str), 1 , schema);
-            	if(str[0] == 'E' ){
-                	break;
-            	}  
-        }
+            		printf("===> %s", str);
+            		fwrite(str , strlen(str), 1 , schema);
+            		if(str[0] == 'E' ){
+                		break;
+            		}  
+        	}
     	}
     	fclose(file);
     	fclose (schema);
@@ -141,24 +141,24 @@ bool loadSchema(struct _table *table) {
     	schema = fopen(table->schemaName, "r");
     	if(schema != NULL){
         	while (fgets(str, sizeof(str), schema) && str[0] != '\n' ) {
-            	token = strtok(str, " ");
-            	if(strncmp(token, "END", 3) == 0){
-                	break;
-            	}
+            		token = strtok(str, " ");
+            		if(strncmp(token, "END", 3) == 0){
+                		break;
+            		}
             
-            	if(strncmp(token, "ADD", 3) == 0){
-                	token = strtok(NULL, " ");
-                	strncpy(table->fields[i].fieldName, token, sizeof(table->fields[i].fieldName));
-                	token = strtok(NULL, " ");
-                	strncpy(table->fields[i].fieldType, token, sizeof(table->fields[i].fieldType));
+            		if(strncmp(token, "ADD", 3) == 0){
+                		token = strtok(NULL, " ");
+                		strncpy(table->fields[i].fieldName, token, sizeof(table->fields[i].fieldName));
+                		token = strtok(NULL, " ");
+                		strncpy(table->fields[i].fieldType, token, sizeof(table->fields[i].fieldType));
                 
-                	token = strtok(NULL, " ");
-                	int val = atoi(token);
-                	table->fields[i].fieldLength = val;
-                	table->reclen += val;
-                	table->fieldcount += 1;
-            	}
-            	++i;
+                		token = strtok(NULL, " ");
+                		int val = atoi(token);
+                		table->fields[i].fieldLength = val;
+                		table->reclen += val;
+                		table->fieldcount += 1;
+            		}
+            		++i;
         	}
     	}
     	fclose(schema);
@@ -332,21 +332,14 @@ void binarySearch(char (*array)[20], int len, char *searchItem)
 		mid = (first + last) /2;
 		if(strcmp(array[mid], searchItem) == 0){
 			found = true;
-            printf("%s\n", array[mid]);
-            printf("%d\n", mid);
             getRecord(mid, record, table);
-            printf("%s\n", record);
         }
 		else if (strcmp(array[mid], searchItem) > 0){
 			last = mid - 1;
-            printf("%s\n", array[mid]);
-            printf("%d\n", mid);
         }
 		else{
 			first = mid + 1;
-            printf("%s\n", array[mid]);
-            printf("%d\n", mid);
-        }
+        	}
 	}
 }*/
 
